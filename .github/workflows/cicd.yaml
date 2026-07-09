@@ -23,8 +23,8 @@ jobs:
 
     - name: Set up Go
       uses: actions/setup-go@v5
-       with:
-         go-version: '1.22'
+      with:
+        go-version: '1.22'
 
     - name: Build
       run: go build -o go-web-app-1
@@ -83,7 +83,7 @@ jobs:
 
     - name: Update tag in Helm chart
       run: |
-        sed -i 's/tag: .*/tag: "${{github.run_id}}"/' helm/go-web-app-chart-1/values.yaml
+        sed -i 's/tag: .*/tag: "${{github.run_id}}"/' helm/go-web-app-1-chart/values.yaml
 
     - name: Commit and push changes
       run: |
