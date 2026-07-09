@@ -1,0 +1,21 @@
+replicaCount: 1
+
+image:
+  repository: aravind310730/go-web-app-1
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8082
+  targetPort: 8082
+
+ports:
+  containerPort: 8082
+
+ingress:
+  enabled: true
+  className: nginx
+  host: go-web-app-1.local
+  path: /
+
