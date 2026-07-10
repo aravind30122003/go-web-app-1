@@ -3,6 +3,9 @@ package main
 import (
 	"log"
 	"net/http"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func homePage(w http.ResponseWriter, r *http.Request) {
@@ -31,6 +34,9 @@ func main() {
 	http.HandleFunc("/courses", coursePage)
 	http.HandleFunc("/about", aboutPage)
 	http.HandleFunc("/contact", contactPage)
+
+        // Metrics endpoint
+	http.Handle("/metrics", promhttp.Handler())
 
 	err := http.ListenAndServe("0.0.0.0:8082", nil)
 	if err != nil {
